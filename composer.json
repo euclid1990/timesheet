@@ -1,0 +1,12 @@
+{
+    "require": {
+        "google/apiclient": "^2.0",
+        "illuminate/config": "^5.2",
+        "nesbot/carbon": "^1.21"
+    },
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    }
+}
