@@ -21,7 +21,7 @@ class Chatwork
 
     function createMessage($timesheetResult, $codeToCWId)
     {
-        $message = "[Timesheet remind BOT]\n";
+        $message = "[Timesheet]\n";
         foreach ($timesheetResult as $code => $value) {
             if (!isset($codeToCWId[strtoupper($code)])) continue;
             $ms = implode(" | ",  array_map(
@@ -32,6 +32,7 @@ class Chatwork
                 array_keys($value)
             ));
             $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $ms);
+            var_dump($message);
         }
         return $message;
     }
