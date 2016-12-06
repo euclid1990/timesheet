@@ -8,9 +8,7 @@ use Google_Service_Sheets;
 define('APPLICATION_NAME', 'Framgia Timesheet Checking');
 define('CREDENTIALS_PATH', __DIR__ . '/../credentials/sheets.googleapis.com.json');
 define('CLIENT_SECRET_PATH', __DIR__ . '/../credentials/client_secret.json');
-define('SCOPES', implode(' ', array(
-    Google_Service_Sheets::SPREADSHEETS_READONLY)
-));
+define('SCOPES', implode(' ', [Google_Service_Sheets::SPREADSHEETS_READONLY]));
 
 class Google {
 
