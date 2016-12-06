@@ -12,6 +12,7 @@ if (php_sapi_name() != 'cli') {
 $roomId = "20238447";
 $codeToCWId = [
     "B120085" => "775585",
+    "B120050" => "645435"
 ];
 $codes = array_keys($codeToCWId);
 
@@ -20,4 +21,4 @@ $timesheetResult = $checking->exec($codes);
 
 $chatwork = new Chatwork();
 $message = $chatwork->createMessage($timesheetResult, $codeToCWId);
-$chatwork->sendMessage($roomId, $message);
+//$chatwork->sendMessage($roomId, $message);

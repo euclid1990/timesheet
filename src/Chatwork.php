@@ -32,8 +32,8 @@ class Chatwork
                 array_keys($value)
             ));
             $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $ms);
-            var_dump($message);
         }
+        var_dump($message);
         return $message;
     }
 
