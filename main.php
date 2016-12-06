@@ -9,7 +9,7 @@ if (php_sapi_name() != 'cli') {
     throw new Exception('This application must be run on the command line.');
 }
 
-$roomId = "30079582";
+$roomId = "20238447";
 $codeToCWId = [
     "B120085" => "775585",
 ];
