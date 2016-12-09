@@ -24,13 +24,17 @@ class Chatwork
         $message = "[Timesheet]\n";
         foreach ($timesheetResult as $code => $value) {
             if (!isset($codeToCWId[strtoupper($code)])) continue;
-            $ms = implode(" | ",  array_map(
+            $value = array_filter($value, function($v) {
+                return $v === 'NG';
+            });
+            $pre = array_map(
                 function ($v, $k) {
                     return $k . ":" . $v;
                 },
                 $value,
                 array_keys($value)
-            ));
+            );
+            $ms = empty($pre) ? "It's OK (Everyday)" : implode(" | ",  $pre);
             $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $ms);
         }
         var_dump($message);
