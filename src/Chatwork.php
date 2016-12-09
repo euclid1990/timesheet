@@ -34,7 +34,7 @@ class Chatwork
                 $value,
                 array_keys($value)
             );
-            $ms = empty($pre) ? "It's OK (Everyday)" : implode(" | ",  $pre);
+            $ms = empty($pre) ? "It's OK" : implode(" | ",  $pre);
             $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $ms);
         }
         var_dump($message);
