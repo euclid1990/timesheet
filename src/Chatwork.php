@@ -11,7 +11,7 @@ class Chatwork
     // Token of chatwork API
     protected $token = null;
     // Message to be sent
-    const MESSAGE = "[To:%s]\n%s\n";
+    const MESSAGE = "[To:%s] %s\n%s\n";
 
     function __construct()
     {
@@ -22,9 +22,9 @@ class Chatwork
     function createMessage($timesheetResult, $codeToCWId)
     {
         $message = "[Timesheet]\n";
-        foreach ($timesheetResult as $code => $value) {
+        foreach ($timesheetResult as $code => $result) {
             if (!isset($codeToCWId[strtoupper($code)])) continue;
-            $value = array_filter($value, function($v) {
+            $value = array_filter($result["values"], function($v) {
                 return $v === 'NG';
             });
             $pre = array_map(
@@ -35,7 +35,7 @@ class Chatwork
                 array_keys($value)
             );
             $ms = empty($pre) ? "It's OK" : implode(" | ",  $pre);
-            $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $ms);
+            $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $result["staff"]->name, $ms);
         }
         var_dump($message);
         return $message;

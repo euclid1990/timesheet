@@ -181,7 +181,10 @@ class Checking {
                 $workedDates = $workedDates[0];
                 $values = $this->check($this->workingDates, $workedDates);
             }
-            $result[$staff->code] = $values;
+            $result[$staff->code] = [
+                "values" => $values,
+                "staff" => $staff,
+            ];
         }
         return $result;
     }
