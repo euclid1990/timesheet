@@ -10,7 +10,7 @@ define('TIMESHEET', __DIR__ . '/../credentials/timesheet.json');
 
 class Checking {
 
-    const SHEET_TAB_NAME = "%s%s!";
+    const SHEET_TAB_NAME = "%s!";
 
     protected $spreadsheet;
     protected $spreadsheetId;
@@ -35,13 +35,31 @@ class Checking {
 
     public function setSheetTabName($name = "")
     {
-        $monthNames = [1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec"];
+        $sheetNames = [
+            "2016-12-26" => "Jan2017",
+            "2017-02-02" => "Feb2017",
+            // 3 => "Mar",
+            // 4 => "Apr",
+            // 5 => "May",
+            // 6 => "Jun",
+            // 7 => "Jul",
+            // 8 => "Aug",
+            // 9 => "Sep",
+            // 10 => "Oct",
+            // 11 => "Nov",
+            // 12 => "Dec"
+        ];
         if (!empty($name)) {
             return $this->sheetTabName = $name;
         }
-        $year = $this->dt->year;
-        $month = $this->dt->month;
-        return $this->sheetTabName = sprintf(self::SHEET_TAB_NAME, $monthNames[$month], $year);
+        $sheetName = array_values($sheetNames)[0];
+        foreach ($sheetNames as $date => $val) {
+            $startOfMonth = Carbon::parse($date);
+            if ($this->dt->gte($startOfMonth)) {
+                $sheetName = $val;
+            }
+        }
+        return $this->sheetTabName = sprintf(self::SHEET_TAB_NAME, $sheetName);
     }
 
     public function getRangeName($range)
