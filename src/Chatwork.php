@@ -34,8 +34,10 @@ class Chatwork
                 $value,
                 array_keys($value)
             );
-            $ms = empty($pre) ? "It's OK" : implode(" | ",  $pre);
-            $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $result["staff"]->name, $ms);
+            if (!empty($pre)) {
+                $ms = implode(" | ",  $pre);
+                $message .= sprintf(self::MESSAGE, $codeToCWId[strtoupper($code)], $result["staff"]->name, $ms);
+            }
         }
         var_dump($message);
         return $message;

@@ -27,4 +27,4 @@ $timesheetResult = $checking->exec($codes);
 
 $chatwork = new Chatwork();
 $message = $chatwork->createMessage($timesheetResult, $codeToCWId);
-$chatwork->sendMessage($roomId, $message);
+//$chatwork->sendMessage($roomId, $message);
